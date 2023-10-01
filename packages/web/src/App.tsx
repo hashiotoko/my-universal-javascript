@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { request } from 'graphql-request';
 
-const url = 'http://localhost:4000/graphql';
+const port = import.meta.env.VITE_BACKEND_PORT || 4000;
+const url = `http://localhost:${port}/graphql`;
+console.log(`backend endpoint: ${url}`);
 
 const query = `
   query getUsers {
