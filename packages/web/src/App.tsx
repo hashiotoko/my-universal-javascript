@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <h1>My Universal Javascript</h1>
+      <h1>Javascript Playground</h1>
       <div>
         <button onClick={graphQL}>Click</button>
         {users.map((user: any) => {
