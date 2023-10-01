@@ -1,25 +1,8 @@
-import cors from 'cors';
-import express from 'express';
-import { graphqlHTTP } from 'express-graphql';
-import { GraphQLSchema } from 'graphql';
-import { queryType, mutationType } from './fields/';
+import { server } from './server';
 
-const PORT = 4000;
-const app = express();
-
-const schema = new GraphQLSchema({
-  query: queryType,
-  mutation: mutationType,
-});
-
-app.use(cors());
-app.use(
-  '/graphql',
-  express.json(),
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  })
-);
-
-app.listen(PORT, () => console.log('Listening on :4000'));
+const PORT = process.env.PORT || 4000;
+server()
+  .then((app) => app.listen(PORT))
+  .then(() =>
+    console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)
+  );

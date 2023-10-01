@@ -4,8 +4,8 @@ import { request } from 'graphql-request';
 const url = 'http://localhost:4000/graphql';
 
 const query = `
-  query getMemberList {
-    memberList {
+  query getUsers {
+    users {
       id,
       name,
       age,
@@ -14,12 +14,12 @@ const query = `
 `;
 
 function App() {
-  const [memberList, setMemberList] = useState([]) as any;
+  const [users, setUsers] = useState([]) as any;
 
   const graphQL = async () => {
     const result: any = await request(url, query);
     console.log(JSON.stringify(result));
-    setMemberList(result.memberList);
+    setUsers(result.users);
   };
 
   return (
@@ -27,8 +27,8 @@ function App() {
       <h1>My Universal Javascript</h1>
       <div>
         <button onClick={graphQL}>Click</button>
-        {memberList.map((member: any) => {
-          return <p>{`id: ${member.id}, name: ${member.name}`}</p>;
+        {users.map((user: any) => {
+          return <p>{`id: ${user.id}, name: ${user.name}`}</p>;
         })}
       </div>
     </>

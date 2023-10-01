@@ -1,4 +1,4 @@
-# react アプリケーションをビルドする
+# ビルドツール
 
 ## そもそもビルドとは
 
@@ -34,7 +34,7 @@
 * https://qiita.com/mizchi/items/6b569cc75dbcc26a1f15
 * https://qiita.com/skanno/items/cd57fa5a7e78d2d5ebd5
 
-## ビルドツールの候補
+## ビルドツールの候補(主にフロントエンド)
 
 * [create-react-app](https://create-react-app.dev/) ... react アプリサクッと作りたいならあり
   * react の入門キット的なものでワンコマンドで react 開発環境の整備ができる
