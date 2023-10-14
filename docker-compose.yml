@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  myjs_db:
+    image: postgres:13-alpine
+    ports:
+      - "50000:5432"
+    volumes:
+      - appData:/app:cached
+    working_dir: /app/packages/backend
+    environment:
+      - POSTGRES_INITDB_ARGS="--no-locale"
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=passowrd
+      - POSTGRES_DB=myjs
+
+volumes:
+  appData:
+
+networks:
+  default:
+    name: myjs
