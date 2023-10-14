@@ -30,7 +30,7 @@ function App() {
       <div>
         <button onClick={graphQL}>Click</button>
         {users.map((user: any) => {
-          return <p>{`id: ${user.id}, name: ${user.name}`}</p>;
+          return <p key={user.id}>{`id: ${user.id}, name: ${user.name}`}</p>;
         })}
       </div>
     </>
