@@ -1,6 +1,6 @@
+import { Team } from '../../../src/models/team.js';
 import { AppDataSource } from '../../../data-source.js';
 import { MemberAttrs } from '../../../src/models/member.js';
-import { Team } from '../../../src/models/team.js';
 
 const teamRepository = AppDataSource.manager.getRepository(Team);
 const diamondTeam = await teamRepository.findOneByOrFail({ name: 'diamond' });

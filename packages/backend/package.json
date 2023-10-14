@@ -13,7 +13,8 @@
     "migration:generate": "bun run typeorm -d ./data-source.ts migration:generate -p",
     "migration:run": "bun run typeorm -d ./data-source.ts migration:run",
     "migration:revert": "bun run typeorm -d ./data-source.ts migration:revert",
-    "migration:show": "bun run typeorm -d ./data-source.ts migration:show"
+    "migration:show": "bun run typeorm -d ./data-source.ts migration:show",
+    "lint": "eslint './**/*.{ts,json,js}'"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",

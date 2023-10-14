@@ -1,0 +1,7 @@
+*.yml
+*.yaml
+*.d.ts
+*.md
+
+node_modules/
+documents
