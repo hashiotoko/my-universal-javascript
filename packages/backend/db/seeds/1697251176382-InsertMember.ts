@@ -14,7 +14,7 @@ export class InsertMember1697251176382 implements MigrationInterface {
         where: memberSeed.map((member) => {
           return { name: member.name };
         }),
-      })
+      }),
     );
   }
 }

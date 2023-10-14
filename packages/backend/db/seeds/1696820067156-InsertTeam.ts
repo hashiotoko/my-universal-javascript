@@ -14,7 +14,7 @@ export class InsertTeam1696820067156 implements MigrationInterface {
         where: teamSeed.map((team) => {
           return { name: team.name };
         }),
-      })
+      }),
     );
   }
 }

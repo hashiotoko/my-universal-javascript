@@ -12,7 +12,7 @@ import resolvers from './resolvers';
 
 const typeDefs = readFileSync(
   path.join(__dirname, 'typeDefs.graphql'),
-  'utf-8'
+  'utf-8',
 );
 
 async function createApp(): Promise<Express> {
@@ -35,7 +35,7 @@ async function createApp(): Promise<Express> {
     json(),
     expressMiddleware(server, {
       context: async ({ req }) => ({ token: req.headers.token }),
-    })
+    }),
   );
 
   return app;

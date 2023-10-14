@@ -45,7 +45,7 @@ export class CreateTeam1696742428165 implements MigrationInterface {
             default: 'NOW()',
           },
         ],
-      })
+      }),
     );
   }
 

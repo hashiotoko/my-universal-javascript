@@ -47,7 +47,7 @@ export class CreateMemeber1696752598127 implements MigrationInterface {
             referencedColumnNames: ['id'],
           },
         ],
-      })
+      }),
     );
   }
 
