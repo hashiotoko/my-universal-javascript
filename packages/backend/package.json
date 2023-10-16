@@ -14,7 +14,8 @@
     "migration:run": "bun run typeorm -d ./data-source.ts migration:run",
     "migration:revert": "bun run typeorm -d ./data-source.ts migration:revert",
     "migration:show": "bun run typeorm -d ./data-source.ts migration:show",
-    "lint": "eslint './**/*.{ts,json,js}'"
+    "lint": "eslint './**/*.{ts,json,js}'",
+    "test": "NODE_ENV=test jest ./tests/ --runInBand"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",

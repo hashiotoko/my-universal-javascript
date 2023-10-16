@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  myjs_test_db:
+    image: postgres:13-alpine
+    ports:
+      - "50001:5432"
+    working_dir: /app/packages/backend
+    environment:
+      - POSTGRES_INITDB_ARGS="--no-locale"
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=passowrd
+      - POSTGRES_DB=myjs_test
