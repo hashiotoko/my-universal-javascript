@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
+import { Member } from './member.js';
 
 export type MemberRoleAttrs = Pick<MemberRole, 'name'>;
 export type MemberRoleName = keyof typeof MemberRole.NAMES;
@@ -21,6 +24,9 @@ export class MemberRole {
 
   @Column({ name: 'name' })
   name!: MemberRoleName;
+
+  @ManyToMany(() => Member, (member) => member.roles)
+  members?: Relation<Member>[];
 
   @CreateDateColumn({
     name: 'created_at',

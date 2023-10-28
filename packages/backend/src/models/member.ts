@@ -8,10 +8,13 @@ import {
   JoinColumn,
   DeleteDateColumn,
   Relation,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Team } from './team.js';
+import { MemberRole } from './member-role.js';
 
-export type MemberAttrs = Pick<Member, 'teamId' | 'team' | 'name'>;
+export type MemberAttrs = Pick<Member, 'teamId' | 'team' | 'name' | 'roles'>;
 
 @Entity('members')
 export class Member {
@@ -32,6 +35,25 @@ export class Member {
 
   @Column({ name: 'name', length: Member.MAX_NAME_LENGTH })
   name!: string;
+
+  @ManyToMany(() => MemberRole, (memberRole) => memberRole.members, {
+    onDelete: 'CASCADE',
+    onUpdate: 'NO ACTION',
+  })
+  @JoinTable({
+    name: 'members_member_roles', // 中間テーブル名
+    // 定義元
+    joinColumn: {
+      name: 'member_id', // 中間テーブルのカラム名
+      referencedColumnName: 'id', // 参照カラム名
+    },
+    // 定義先
+    inverseJoinColumn: {
+      name: 'member_role_id', //
+      referencedColumnName: 'id',
+    },
+  })
+  roles?: Relation<MemberRole>[];
 
   @CreateDateColumn({
     name: 'created_at',
@@ -59,5 +81,6 @@ export class Member {
       this.team = attrs.team;
     }
     this.name = attrs.name;
+    if (attrs.roles) this.roles = attrs.roles;
   }
 }
