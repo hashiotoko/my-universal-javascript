@@ -7,10 +7,10 @@ import {
   UpdateDateColumn,
   JoinColumn,
   DeleteDateColumn,
-  Relation,
   ManyToMany,
   JoinTable,
 } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { Team } from './team.js';
 import { MemberRole } from './member-role.js';
 

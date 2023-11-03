@@ -4,9 +4,10 @@ import {
   Entity,
   ManyToMany,
   PrimaryGeneratedColumn,
-  Relation,
   UpdateDateColumn,
 } from 'typeorm';
+// NOTE: 以下のようにしない実行時にエラーになる
+import type { Relation } from 'typeorm';
 import { Member } from './member.js';
 
 export type MemberRoleAttrs = Pick<MemberRole, 'name'>;
@@ -22,7 +23,7 @@ export class MemberRole {
   @PrimaryGeneratedColumn()
   readonly id!: number;
 
-  @Column({ name: 'name' })
+  @Column({ type: 'varchar', name: 'name' })
   name!: MemberRoleName;
 
   @ManyToMany(() => Member, (member) => member.roles)

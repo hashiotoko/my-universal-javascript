@@ -8,9 +8,9 @@ export const TestDataSource = new DataSource({
   username: 'admin',
   password: 'passowrd',
   database: 'myjs_test',
-  synchronize: true,
-  logging: true,
+  synchronize: false,
+  logging: false,
   entities: ['src/models/**/*.ts'],
-  migrations: ['db/**/*.ts'],
+  migrations: ['db/{migrations, seeds}/**/*.ts'],
   subscribers: ['src/subscribers/**/*.ts'],
 });

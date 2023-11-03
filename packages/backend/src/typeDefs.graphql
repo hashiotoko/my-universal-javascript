@@ -1,3 +1,5 @@
+scalar DateTime
+
 type User {
   id: ID!
   name: String!
@@ -10,7 +12,18 @@ type Book {
   author: String!
 }
 
+type Team {
+  id: ID!
+  name: String!
+  postalCode: String!
+  mailAddress: String!
+  firstLoggedInAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   users: [User!]!
   books: [Book!]!
+  teams: [Team]!
 }

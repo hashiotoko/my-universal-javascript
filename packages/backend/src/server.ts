@@ -9,6 +9,8 @@ import { json } from 'body-parser';
 import path from 'path';
 import { readFileSync } from 'fs';
 import resolvers from './resolvers';
+import { dataSource } from './dataSource';
+import { context, Context } from './resolvers/context';
 
 const typeDefs = readFileSync(
   path.join(__dirname, 'typeDefs.graphql'),
@@ -18,14 +20,20 @@ const typeDefs = readFileSync(
 async function createApp(): Promise<Express> {
   const app = express();
   const httpServer = http.createServer(app);
-  const server = new ApolloServer({
+  const server = new ApolloServer<Context>({
     typeDefs,
     resolvers,
+    includeStacktraceInErrorResponses: process.env.NODE_ENV === 'development',
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       ApolloServerPluginLandingPageLocalDefault(),
     ],
   });
+
+  await dataSource
+    .initialize()
+    .then(async () => console.log(`datasource is initialized!`))
+    .catch((error) => console.log(error));
 
   await server.start();
 
@@ -34,7 +42,7 @@ async function createApp(): Promise<Express> {
     cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
+      context: async ({ req, res }) => context(req, res),
     }),
   );
 

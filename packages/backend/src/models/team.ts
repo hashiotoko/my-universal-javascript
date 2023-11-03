@@ -5,8 +5,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  Relation,
 } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { Member } from './member.js';
 
 export type TeamAttrs = Pick<
