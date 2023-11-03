@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-// NOTE: 以下のようにしない実行時にエラーになる
+// NOTE: 以下のようにしないと実行時にエラーになる
 import type { Relation } from 'typeorm';
 import { Member } from './member.js';
 
