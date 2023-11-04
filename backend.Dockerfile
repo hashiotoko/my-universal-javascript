@@ -1,10 +1,10 @@
-FROM oven/bun:1.0.7
+FROM node:18.17.0-bullseye-slim
 
-COPY package.json bun.lockb lerna.json /app/
+COPY package.json yarn.lock lerna.json /app/
 COPY packages/backend /app/packages/backend
 
 WORKDIR /app
-RUN bun install
+RUN yarn install && yarn build
 
 WORKDIR /app/packages/backend
 RUN chmod +x entrypoint.sh

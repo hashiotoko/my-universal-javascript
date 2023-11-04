@@ -1,7 +1,4 @@
-import {
-  MemberRoleAttrs,
-  MemberRole,
-} from '../../../src/models/member-role.js';
+import { MemberRoleAttrs, MemberRole } from '../../../src/models/member-role';
 
 export const memberRoleSeed: MemberRoleAttrs[] = [
   {

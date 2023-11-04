@@ -9,13 +9,10 @@ import { json } from 'body-parser';
 import path from 'path';
 import { readFileSync } from 'fs';
 import resolvers from './resolvers';
-import { dataSource } from './dataSource';
+import { AppDataSource } from './data-source';
 import { context, Context } from './resolvers/context';
 
-const typeDefs = readFileSync(
-  path.join(__dirname, 'typeDefs.graphql'),
-  'utf-8',
-);
+const typeDefs = readFileSync(path.join(__dirname, 'schema.gql'), 'utf8');
 
 async function createApp(): Promise<Express> {
   const app = express();
@@ -30,8 +27,7 @@ async function createApp(): Promise<Express> {
     ],
   });
 
-  await dataSource
-    .initialize()
+  await AppDataSource.initialize()
     .then(async () => console.log(`datasource is initialized!`))
     .catch((error) => console.log(error));
 

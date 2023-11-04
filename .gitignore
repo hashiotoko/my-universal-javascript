@@ -16,3 +16,4 @@ public
 
 lerna-debug.log
 .env
+.env.test

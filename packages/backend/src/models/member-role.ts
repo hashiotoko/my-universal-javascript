@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 // NOTE: 以下のようにしないと実行時にエラーになる
 import type { Relation } from 'typeorm';
-import { Member } from './member.js';
+import { Member } from './member';
 
 export type MemberRoleAttrs = Pick<MemberRole, 'name'>;
 export type MemberRoleName = keyof typeof MemberRole.NAMES;

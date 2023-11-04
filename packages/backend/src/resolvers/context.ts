@@ -1,8 +1,8 @@
 import type express from 'express';
-import { dataSource } from '../dataSource';
+import { AppDataSource } from '../data-source';
 
 export type Context = {
-  dataSource: typeof dataSource;
+  dataSource: typeof AppDataSource;
 };
 
 export const context = async (
@@ -10,6 +10,6 @@ export const context = async (
   _res: express.Response,
 ): Promise<Context> => {
   return {
-    dataSource,
+    dataSource: AppDataSource,
   };
 };

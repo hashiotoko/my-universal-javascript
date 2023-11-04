@@ -1,16 +1,13 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+const { DB_URL } = process.env;
 
 export const TestDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 50001,
-  username: 'admin',
-  password: 'passowrd',
-  database: 'myjs_test',
+  url: DB_URL,
   synchronize: false,
   logging: false,
   entities: ['src/models/**/*.ts'],
-  migrations: ['db/{migrations, seeds}/**/*.ts'],
+  migrations: ['db/@(migrations|seeds)/**/*.ts'],
   subscribers: ['src/subscribers/**/*.ts'],
 });

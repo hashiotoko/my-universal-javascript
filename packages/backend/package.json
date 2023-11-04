@@ -4,18 +4,22 @@
   "private": true,
   "license": "UNLICENSED",
   "main": "./dist/index.js",
-  "type": "module",
   "scripts": {
-    "typecheck": "bun run tsc",
-    "dev": "bun run src/index.ts",
-    "typeorm": "typeorm-ts-node-esm",
-    "migration:create": "bun run typeorm migration:create",
-    "migration:generate": "bun run typeorm -d ./data-source.ts migration:generate -p",
-    "migration:run": "bun run typeorm -d ./data-source.ts migration:run",
-    "migration:revert": "bun run typeorm -d ./data-source.ts migration:revert",
-    "migration:show": "bun run typeorm -d ./data-source.ts migration:show",
+    "typecheck": "tsc --noEmit",
+    "build": "npm-run-all build:*",
+    "build:clean": "rimraf dist",
+    "build:schema": "mkdir -p dist && concat -o dist/schema.gql src/schema/*.gql && graphql-codegen --config codegen.yml",
+    "build:ts": "tsc",
+    "start": "node ./dist/index.js",
+    "start:dev": "tsc-watch --onSuccess 'dotenv node ./dist/index.js'",
+    "typeorm": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
+    "migration:create": "DB_MIGRATION=true dotenv yarn typeorm migration:create",
+    "migration:generate": "DB_MIGRATION=true dotenv yarn typeorm migration:generate -p",
+    "migration:run": "DB_MIGRATION=true dotenv yarn typeorm migration:run",
+    "migration:revert": "DB_MIGRATION=true dotenv yarn typeorm migration:revert",
+    "migration:show": "DB_MIGRATION=true dotenv yarn typeorm migration:show",
     "lint": "eslint './**/*.{ts,json,js}'",
-    "test": "NODE_ENV=test jest ./tests/ --runInBand"
+    "test": "env NODE_ENV=test jest __tests__/ --runInBand --detectOpenHandles"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
@@ -28,10 +32,13 @@
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
     "@types/cors": "^2.8.14",
     "@types/express": "^4.17.17",
     "@types/node": "^16.11.10",
-    "bun-types": "^1.0.3",
+    "concat": "^1.0.3",
     "ts-node": "^10.9.1"
   }
 }

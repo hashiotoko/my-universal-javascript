@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import type { Relation } from 'typeorm';
-import { Member } from './member.js';
+import { Member } from './member';
 
 export type TeamAttrs = Pick<
   Team,

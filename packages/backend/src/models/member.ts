@@ -11,8 +11,8 @@ import {
   JoinTable,
 } from 'typeorm';
 import type { Relation } from 'typeorm';
-import { Team } from './team.js';
-import { MemberRole } from './member-role.js';
+import { Team } from './team';
+import { MemberRole } from './member-role';
 
 export type MemberAttrs = Pick<Member, 'teamId' | 'team' | 'name' | 'roles'>;
 

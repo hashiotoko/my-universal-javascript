@@ -1,4 +1,4 @@
-import { TeamAttrs } from '../../../src/models/team.js';
+import { TeamAttrs } from '../../../src/models/team';
 
 export const teamFixture: TeamAttrs[] = [
   {

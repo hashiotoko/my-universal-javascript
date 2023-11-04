@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { Team } from '../../src/models/team.js';
-import { MemberRole } from '../../src/models/member-role.js';
-import { Member, MemberAttrs } from '../../src/models/member.js';
+import { Team } from '../../src/models/team';
+import { MemberRole } from '../../src/models/member-role';
+import { Member, MemberAttrs } from '../../src/models/member';
 
 export class InsertMember1697638962845 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

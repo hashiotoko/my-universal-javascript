@@ -1,1 +1,1 @@
-export * from './team.repository.js';
+export * from './team.repository';

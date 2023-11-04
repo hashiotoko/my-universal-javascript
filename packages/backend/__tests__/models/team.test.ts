@@ -1,5 +1,4 @@
-import { describe, test, expect } from '@jest/globals';
-import { Team } from '../../src/models/team.js';
+import { Team } from '../../src/models/team';
 
 describe('Team', () => {
   describe('constructor', () => {

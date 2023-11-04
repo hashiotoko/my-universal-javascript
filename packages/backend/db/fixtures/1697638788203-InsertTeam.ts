@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { Team } from '../../src/models/team.js';
-import { teamFixture } from './data/team.js';
+import { Team } from '../../src/models/team';
+import { teamFixture } from './data/team';
 
 export class InsertTeam1697638788203 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

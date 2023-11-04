@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { memberRoleSeed } from './data/member-role.js';
-import { MemberRole } from '../../src/models/member-role.js';
+import { memberRoleSeed } from './data/member-role';
+import { MemberRole } from '../../src/models/member-role';
 
 export class InsertMemberRole1697337500505 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
