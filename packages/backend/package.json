@@ -11,7 +11,7 @@
     "build:schema": "mkdir -p dist && concat -o dist/schema.gql src/schema/*.gql && graphql-codegen --config codegen.yml",
     "build:ts": "tsc",
     "start": "node ./dist/index.js",
-    "start:dev": "tsc-watch --onSuccess 'dotenv node ./dist/index.js'",
+    "start:dev": "NODE_ENV=development tsc-watch --onSuccess 'dotenv node ./dist/index.js'",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
     "migration:create": "DB_MIGRATION=true dotenv yarn typeorm migration:create",
     "migration:generate": "DB_MIGRATION=true dotenv yarn typeorm migration:generate -p",
@@ -19,7 +19,7 @@
     "migration:revert": "DB_MIGRATION=true dotenv yarn typeorm migration:revert",
     "migration:show": "DB_MIGRATION=true dotenv yarn typeorm migration:show",
     "lint": "eslint './**/*.{ts,json,js}'",
-    "test": "env NODE_ENV=test jest __tests__/ --runInBand --detectOpenHandles"
+    "test": "NODE_ENV=test jest __tests__/ --runInBand --detectOpenHandles"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
