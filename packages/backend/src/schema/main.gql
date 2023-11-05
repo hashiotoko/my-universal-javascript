@@ -1,17 +1,5 @@
 scalar DateTime
 
-type User {
-  id: ID!
-  name: String!
-  age: Int!
-}
-
-type Book {
-  id: ID!
-  title: String!
-  author: String!
-}
-
 type Team {
   id: ID!
   name: String!
@@ -23,8 +11,6 @@ type Team {
 }
 
 type Query {
-  users: [User!]!
-  books: [Book!]!
   teams: [Team]!
 }
 
