@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateMemeber1696752598127 implements MigrationInterface {
+export class CreateMember1696752598127 implements MigrationInterface {
   private tableName: string = 'members';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -10,14 +10,14 @@ export class CreateMemeber1696752598127 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'uuid',
             isPrimary: true,
             isGenerated: true,
-            generationStrategy: 'increment',
+            generationStrategy: 'uuid',
           },
           {
             name: 'team_id',
-            type: 'int',
+            type: 'uuid',
           },
           {
             name: 'name',

@@ -20,11 +20,11 @@ export type MemberAttrs = Pick<Member, 'teamId' | 'team' | 'name' | 'roles'>;
 export class Member {
   static readonly MAX_NAME_LENGTH: number = 50;
 
-  @PrimaryGeneratedColumn()
-  readonly id!: number;
+  @PrimaryGeneratedColumn('uuid')
+  readonly id!: string;
 
   @Column({ name: 'team_id' })
-  readonly teamId?: number;
+  readonly teamId?: string;
 
   @ManyToOne(() => Team, {
     orphanedRowAction: 'soft-delete',

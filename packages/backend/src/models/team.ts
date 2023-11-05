@@ -19,8 +19,8 @@ export class Team {
   static readonly MAX_NAME_LENGTH: number = 50;
   static readonly POSTAL_CODE_LENGTH: number = 7;
 
-  @PrimaryGeneratedColumn('increment')
-  readonly id!: number;
+  @PrimaryGeneratedColumn('uuid')
+  readonly id!: string;
 
   @Column({ name: 'name', length: Team.MAX_NAME_LENGTH })
   name!: string;

@@ -1,0 +1,13 @@
+type Team {
+  id: ID!
+  name: String!
+  postalCode: String!
+  mailAddress: String!
+  firstLoggedInAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+extend type Query {
+  teams: [Team]!
+}

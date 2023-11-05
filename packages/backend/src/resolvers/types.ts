@@ -18,6 +18,7 @@ export type Scalars = {
 
 export type GQLQuery = {
   __typename?: 'Query';
+  greeting: Scalars['String']['output'];
   teams: Array<Maybe<GQLTeam>>;
 };
 
@@ -126,6 +127,7 @@ export interface GQLDateTimeScalarConfig extends GraphQLScalarTypeConfig<GQLReso
 }
 
 export type GQLQueryResolvers<ContextType = any, ParentType extends GQLResolversParentTypes['Query'] = GQLResolversParentTypes['Query']> = {
+  greeting?: Resolver<GQLResolversTypes['String'], ParentType, ContextType>;
   teams?: Resolver<Array<Maybe<GQLResolversTypes['Team']>>, ParentType, ContextType>;
 };
 

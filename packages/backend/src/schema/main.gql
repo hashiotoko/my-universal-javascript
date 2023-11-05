@@ -1,19 +1,9 @@
 scalar DateTime
 
-type Team {
-  id: ID!
-  name: String!
-  postalCode: String!
-  mailAddress: String!
-  firstLoggedInAt: DateTime
-  createdAt: DateTime!
-  updatedAt: DateTime!
+schema {
+  query: Query
 }
 
 type Query {
-  teams: [Team]!
-}
-
-schema {
-  query: Query
+  greeting: String!
 }

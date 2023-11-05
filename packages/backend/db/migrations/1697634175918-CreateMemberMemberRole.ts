@@ -10,7 +10,7 @@ export class CreateMemberMemberRole1697634175918 implements MigrationInterface {
         columns: [
           {
             name: 'member_id',
-            type: 'int',
+            type: 'uuid',
             isPrimary: true,
           },
           {
