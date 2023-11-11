@@ -6,8 +6,9 @@ services:
       context: .
       dockerfile: backend.Dockerfile
     volumes:
-      - .:/app:cached
+      - ./packages/backend:/app/packages/backend:cached
       - volume-myjs-node_modules:/app/node_modules:cached
+      - volume-myjs-backend-node_modules:/app/packages/backend/node_modules:cached
     ports:
       - "4000:4000"
     env_file:
@@ -16,15 +17,13 @@ services:
       - DB_URL=postgresql://admin:password@myjs-database:5432/myjs
     depends_on:
       - database
+    entrypoint: /app/packages/backend/entrypoint.dev.sh
 
   database:
     container_name: myjs-database
     image: postgres:13-alpine
     ports:
       - "50000:5432"
-    volumes:
-      - appData:/app:cached
-    working_dir: /app/packages/backend
     environment:
       - POSTGRES_INITDB_ARGS="--no-locale"
       - POSTGRES_USER=admin
@@ -32,8 +31,16 @@ services:
       - POSTGRES_DB=myjs
 
 volumes:
-  appData:
   volume-myjs-node_modules:
+    driver_opts:
+      type: none
+      device: ${PWD}/node_modules
+      o: bind
+  volume-myjs-backend-node_modules:
+    driver_opts:
+      type: none
+      device: ${PWD}/packages/backend/node_modules
+      o: bind
 
 networks:
   default:

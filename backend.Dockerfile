@@ -1,12 +1,13 @@
 FROM node:18.17.0-bullseye-slim
 
-COPY package.json yarn.lock lerna.json /app/
-COPY packages/backend /app/packages/backend
-
 WORKDIR /app
-RUN yarn install && yarn build
+COPY package.json yarn.lock lerna.json ./
+COPY packages/backend/package.json ./packages/backend/
+RUN yarn install
+
+COPY packages/backend ./packages/backend
+RUN yarn build
 
 WORKDIR /app/packages/backend
-RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT [ "yarn", "start" ]
