@@ -11,6 +11,8 @@ import { readFileSync } from 'fs';
 import resolvers from './resolvers';
 import { AppDataSource } from './data-source';
 import { context, Context } from './resolvers/context';
+import { loggerMiddleware } from './middlewares/logger';
+import { fatalLogger, launchLogger } from './utils/logger';
 
 const typeDefs = readFileSync(path.join(__dirname, 'schema.gql'), 'utf8');
 
@@ -27,12 +29,15 @@ async function createApp(): Promise<Express> {
     ],
   });
 
+  launchLogger('DB connecting...');
   await AppDataSource.initialize()
-    .then(async () => console.log(`datasource is initialized!`))
-    .catch((error) => console.log(error));
+    .then(async () => launchLogger('datasource is initialized!'))
+    .catch((error) => fatalLogger(error));
+  launchLogger('DB connected');
 
   await server.start();
 
+  app.use(loggerMiddleware());
   app.use(
     '/graphql',
     cors<cors.CorsRequest>(),
@@ -52,9 +57,9 @@ export async function server(): Promise<Express> {
     return appCache;
   }
 
-  console.log('Creating app ...');
+  launchLogger('Creating app ...');
   const app = await createApp();
-  console.log('Created app!!!');
+  launchLogger('Created app!!!');
   appCache = app;
 
   return app;
