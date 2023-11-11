@@ -1,7 +1,7 @@
 FROM node:18.17.0-bullseye-slim
 
 WORKDIR /app
-COPY package.json yarn.lock lerna.json ./
+COPY package.json yarn.lock lerna.json jest.config.js ./
 COPY packages/backend/package.json ./packages/backend/
 RUN yarn install
 
