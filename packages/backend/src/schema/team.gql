@@ -9,5 +9,6 @@ type Team {
 }
 
 extend type Query {
+  team(id: ID!): Team
   teams: [Team]!
 }
