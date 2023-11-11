@@ -3,8 +3,8 @@ import { Context } from '../context';
 import { GQLQueryResolvers } from '../types';
 
 export const teams: GQLQueryResolvers['teams'] = async (
-  _: {},
-  _args: {},
+  _parent: NonNullable<unknown>,
+  _args: NonNullable<unknown>,
   _context: Context,
 ) => {
   return await TeamRepository.getAll();
