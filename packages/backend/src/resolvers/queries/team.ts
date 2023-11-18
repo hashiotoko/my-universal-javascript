@@ -1,11 +1,10 @@
-import { TeamRepository } from '../../repositories/team.repository';
-import { Context } from '../context';
+import { Team } from '../../models/team';
 import { GQLQueryResolvers } from '../types';
 
 export const team: GQLQueryResolvers['team'] = async (
-  _parent: NonNullable<unknown>,
+  _parent,
   { id },
-  _context: Context,
+  context,
 ) => {
-  return await TeamRepository.findOneBy({ id });
+  return await context.dataSource.getRepository(Team).findOneBy({ id });
 };

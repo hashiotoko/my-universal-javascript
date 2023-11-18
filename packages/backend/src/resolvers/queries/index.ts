@@ -1,11 +1,5 @@
-import { greeting } from './greeting';
-import { teams } from './teams';
-import { team } from './team';
-
-const Query = {
-  greeting,
-  team,
-  teams,
-};
-
-export default Query;
+export * from './greeting';
+export * from './team';
+export * from './teams';
+export * from './member';
+export * from './members';

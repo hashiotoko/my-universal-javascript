@@ -49,11 +49,11 @@ export class Member {
     },
     // 定義先
     inverseJoinColumn: {
-      name: 'member_role_id', //
+      name: 'member_role_id',
       referencedColumnName: 'id',
     },
   })
-  roles?: Relation<MemberRole>[];
+  roles!: Relation<MemberRole>[];
 
   @CreateDateColumn({
     name: 'created_at',
@@ -82,5 +82,9 @@ export class Member {
     }
     this.name = attrs.name;
     if (attrs.roles) this.roles = attrs.roles;
+  }
+
+  get teamName(): string {
+    return this.team!.name;
   }
 }

@@ -1,0 +1,18 @@
+type Member {
+  id: ID!
+  name: String!
+  teamName: String!
+  roles: [MemberRole!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum MemberRole {
+  ADMIN
+  STUFF
+}
+
+extend type Query {
+  member(id: ID!): Member
+  members: [Member]!
+}

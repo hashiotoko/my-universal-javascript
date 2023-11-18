@@ -8,10 +8,12 @@
     "typecheck": "tsc --noEmit",
     "build": "npm-run-all build:*",
     "build:clean": "rimraf dist",
-    "build:schema": "mkdir -p dist && concat -o dist/schema.gql src/schema/*.gql && graphql-codegen --config codegen.yml",
+    "build:schema": "npm-run-all build:schema:*",
+    "build:schema:build": "mkdir -p dist && concat -o dist/schema.gql src/schema/*.gql && graphql-codegen --config codegen.yml",
+    "build:schema:adjust": "replace 'Array<MemberRole>' 'Array<GQLMemberRole>' src/resolvers/types.ts",
     "build:ts": "tsc",
     "start": "node ./dist/index.js",
-    "start:dev": "NODE_ENV=development tsc-watch --onSuccess 'dotenv node ./dist/index.js'",
+    "start:dev": "tsc-watch --onSuccess 'dotenv node ./dist/index.js'",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
     "migration:create": "DB_MIGRATION=true dotenv yarn typeorm migration:create",
     "migration:generate": "DB_MIGRATION=true dotenv yarn typeorm migration:generate -p",
@@ -47,6 +49,7 @@
     "@types/on-finished": "^2.3.4",
     "@types/uuid": "^9.0.7",
     "concat": "^1.0.3",
+    "replace": "^1.2.2",
     "ts-node": "^10.9.1"
   }
 }

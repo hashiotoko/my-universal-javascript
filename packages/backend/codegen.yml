@@ -7,4 +7,14 @@ generates:
       - "typescript"
       - "typescript-resolvers"
     config:
+      contextType: ./context#Context
       typesPrefix: GQL
+      # ref. https://the-guild.dev/graphql/codegen/plugins/typescript/typescript-resolvers#enum-resolvers
+      #      https://github.com/sci-map-org/api/blob/18c5fc83729c4e28aefaf9b5d48d26b987c5a7d2/codegen.yml#L11
+      enumsAsConst: true
+      enumValues:
+        MemberRole:
+          ADMIN: admin
+          STUFF: stuff
+      mappers:
+        Member: ../models/member#Member
