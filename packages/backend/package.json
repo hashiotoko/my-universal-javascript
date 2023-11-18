@@ -31,9 +31,11 @@
     "graphql": "^16.8.0",
     "graphql-scalars": "^1.22.4",
     "lodash": "^4.17.21",
+    "lz-string": "^1.5.0",
     "on-finished": "^2.4.1",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
+    "short-uuid": "^4.2.2",
     "typeorm": "^0.3.17",
     "uuid": "^9.0.1"
   },

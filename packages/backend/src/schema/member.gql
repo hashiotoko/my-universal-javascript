@@ -1,3 +1,32 @@
+extend type Query {
+  member(id: ID!): Member
+  members(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): MemberConnection!
+}
+
+type MemberConnection {
+  edges: [MemberEdge]
+  nodes: [Member]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type MemberEdge {
+  node: Member
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
 type Member {
   id: ID!
   name: String!
@@ -10,9 +39,4 @@ type Member {
 enum MemberRole {
   ADMIN
   STUFF
-}
-
-extend type Query {
-  member(id: ID!): Member
-  members: [Member]!
 }
