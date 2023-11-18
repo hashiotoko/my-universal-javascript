@@ -13,6 +13,7 @@ import { AppDataSource } from './data-source';
 import { context, Context } from './resolvers/context';
 import { loggerMiddleware } from './middlewares/logger';
 import { fatalLogger, launchLogger } from './utils/logger';
+import { formatError } from './utils/error';
 
 const typeDefs = readFileSync(path.join(__dirname, 'schema.gql'), 'utf8');
 
@@ -27,6 +28,7 @@ async function createApp(): Promise<Express> {
       ApolloServerPluginDrainHttpServer({ httpServer }),
       ApolloServerPluginLandingPageLocalDefault(),
     ],
+    formatError,
   });
 
   launchLogger('DB connecting...');

@@ -1,4 +1,9 @@
+import { ApolloServer } from '@apollo/server';
+import { readFileSync } from 'fs';
+import path from 'path';
 import { DataSource, EntityManager } from 'typeorm';
+import resolvers from '../src/resolvers';
+import { Context } from '../src/resolvers/context';
 import { AppDataSource } from '../src/data-source';
 
 export async function prepareConnection() {
@@ -23,3 +28,8 @@ export const refreshDatabase = async (
   await queryRunner.rollbackTransaction();
   await queryRunner.release();
 };
+
+export const testServer = new ApolloServer<Context>({
+  typeDefs: readFileSync(path.join(__dirname, '../dist/schema.gql'), 'utf8'),
+  resolvers,
+});

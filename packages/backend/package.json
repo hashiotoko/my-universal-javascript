@@ -49,6 +49,7 @@
     "@types/on-finished": "^2.3.4",
     "@types/uuid": "^9.0.7",
     "concat": "^1.0.3",
+    "graphql-tag": "^2.12.6",
     "replace": "^1.2.2",
     "ts-node": "^10.9.1"
   }
