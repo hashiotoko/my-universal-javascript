@@ -1,3 +1,16 @@
+extend type Query {
+  team(id: ID!): Team
+  allTeams: [Team]!
+  teams(
+    first: Int
+    after: String
+    last: Int
+    before: String
+    filter: TeamFilter
+    orderBy: TeamOrder
+  ): TeamConnection!
+}
+
 type Team {
   id: ID!
   name: String!
@@ -8,7 +21,27 @@ type Team {
   updatedAt: DateTime!
 }
 
-extend type Query {
-  team(id: ID!): Team
-  teams: [Team]!
+input TeamFilter {
+  name: String
+}
+
+input TeamOrder {
+  field: TeamOrderField!
+  direction: OrderDirection!
+}
+
+enum TeamOrderField {
+  NAME
+}
+
+type TeamConnection {
+  edges: [TeamEdge]
+  nodes: [Team]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TeamEdge {
+  node: Team
+  cursor: String!
 }

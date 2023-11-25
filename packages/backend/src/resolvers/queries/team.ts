@@ -9,10 +9,7 @@ export const team: GQLQueryResolvers['team'] = async (
   context,
 ) => {
   try {
-    const team = await context.dataSource.getRepository(Team).findOneBy({ id });
-    console.log(`resolover team: ${JSON.stringify(team)}`);
-    console.log(`resolover team id : ${id}`);
-    return team;
+    return await context.dataSource.getRepository(Team).findOneBy({ id });
   } catch (error) {
     if (
       error instanceof QueryFailedError ||

@@ -1,10 +1,10 @@
+import { camelCase } from 'lodash';
 import { Member } from '../../models/member';
 import { GQLMemberFilter, GQLOrderDirection, GQLTeamResolvers } from '../types';
 import {
   connectionFromNodes,
   validateFetchElementNumberArgs,
 } from '../../utils/pagination';
-import { camelCase } from 'lodash';
 
 export const members: GQLTeamResolvers['members'] = async (
   parent,
