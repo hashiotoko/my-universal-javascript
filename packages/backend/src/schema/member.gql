@@ -10,6 +10,17 @@ extend type Query {
   ): MemberConnection!
 }
 
+extend type Team {
+  members(
+    first: Int
+    after: String
+    last: Int
+    before: String
+    filter: MemberFilter
+    orderBy: MemberOrder
+  ): MemberConnection!
+}
+
 input MemberFilter {
   name: String
 }

@@ -17,4 +17,5 @@ generates:
           ADMIN: admin
           STUFF: stuff
       mappers:
+        Team: ../models/team#Team
         Member: ../models/member#Member
