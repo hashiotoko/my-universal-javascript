@@ -5,7 +5,22 @@ extend type Query {
     after: String
     last: Int
     before: String
+    filter: MemberFilter
+    orderBy: MemberOrder
   ): MemberConnection!
+}
+
+input MemberFilter {
+  name: String
+}
+
+input MemberOrder {
+  field: MemberOrderField!
+  direction: OrderDirection!
+}
+
+enum MemberOrderField {
+  NAME
 }
 
 type MemberConnection {
@@ -18,13 +33,6 @@ type MemberConnection {
 type MemberEdge {
   node: Member
   cursor: String!
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
 }
 
 type Member {

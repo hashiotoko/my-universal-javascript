@@ -17,6 +17,12 @@ export class UnauthenticatedError extends GraphQLError {
   }
 }
 
+export class BadRequestError extends GraphQLError {
+  constructor(message: string) {
+    super(message, { extensions: { code: ApolloServerErrorCode.BAD_REQUEST } });
+  }
+}
+
 export class NotFoundError extends GraphQLError {
   constructor(message: string) {
     super(message, { extensions: { code: MyjsErrorCode.NOT_FOUND } });
