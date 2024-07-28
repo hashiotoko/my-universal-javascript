@@ -1,6 +1,7 @@
+# docker compose から起動されるため、context はルートディレクトリになる
 FROM node:18.17.0-bullseye-slim
 
-WORKDIR /app
+WORKDIR /opt/app
 COPY package.json yarn.lock lerna.json jest.config.js ./
 COPY packages/backend/package.json ./packages/backend/
 RUN yarn install
@@ -8,6 +9,6 @@ RUN yarn install
 COPY packages/backend ./packages/backend
 RUN yarn build
 
-WORKDIR /app/packages/backend
+WORKDIR /opt/app/packages/backend
 
 ENTRYPOINT [ "yarn", "start" ]
