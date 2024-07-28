@@ -1,5 +1,5 @@
 # docker compose から起動されるため、context はルートディレクトリになる
-FROM node:18.17.0-bullseye-slim
+FROM node:20.16.0-alpine
 
 WORKDIR /opt/app
 COPY package.json yarn.lock lerna.json jest.config.js ./
