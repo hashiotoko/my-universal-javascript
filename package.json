@@ -8,10 +8,11 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "start:backend": "mkdir -p node_modules && mkdir -p packages/backend/node_modules && docker compose -p myjs-backend up",
-    "start:backend-test": "mkdir -p node_modules && mkdir -p packages/backend/node_modules && docker compose -p myjs-backend-test -f docker compose.test.yml up",
-    "down:backend": "docker compose -p myjs-backend down -v",
-    "down:backend-test": "docker compose -p myjs-backend-test -f docker compose.test.yml down -v",
+    "start:backend:prepare": "mkdir -p node_modules && mkdir -p packages/backend/node_modules",
+    "start:backend": "yarn start:backend:prepare && docker compose -p myjs-default up",
+    "start:backend-test": "yarn start:backend:prepare && docker compose -p myjs-test -f docker-compose.test.yml up",
+    "down:backend": "docker compose -p myjs-default down -v",
+    "down:backend-test": "docker compose -p myjs-test -f docker-compose.test.yml down -v",
     "dev": "lerna run dev",
     "lint": "lerna run lint"
   },

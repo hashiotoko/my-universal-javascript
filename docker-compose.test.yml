@@ -7,8 +7,8 @@ services:
       dockerfile: ./packages/backend/Dockerfile.dev
     volumes:
       - ./packages/backend:/opt/app/packages/backend:cached
-      - volume-myjs-node_modules:/opt/app/node_modules:cached
-      - volume-myjs-backend-node_modules:/opt/app/packages/backend/node_modules:cached
+      - volume-myjs-node_modules:/opt/app/node_modules:delegated
+      - volume-myjs-backend-node_modules:/opt/app/packages/backend/node_modules:delegated
     ports:
       - "4001:4001"
     env_file:
@@ -33,7 +33,6 @@ services:
       - POSTGRES_DB=myjs
 
 volumes:
-  appData:
   volume-myjs-node_modules:
     driver_opts:
       type: none
