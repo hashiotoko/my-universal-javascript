@@ -2,18 +2,19 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import express, { Express } from 'express';
-import http from 'http';
-import cors from 'cors';
 import { json } from 'body-parser';
-import path from 'path';
+import cors from 'cors';
+import express, { Express } from 'express';
 import { readFileSync } from 'fs';
-import resolvers from './resolvers';
+import depthLimit from 'graphql-depth-limit';
+import http from 'http';
+import path from 'path';
 import { AppDataSource } from './data-source';
-import { context, Context } from './resolvers/context';
 import { loggerMiddleware } from './middlewares/logger';
-import { fatalLogger, launchLogger } from './utils/logger';
+import resolvers from './resolvers';
+import { context, Context } from './resolvers/context';
 import { formatError } from './utils/error';
+import { fatalLogger, launchLogger } from './utils/logger';
 
 const typeDefs = readFileSync(path.join(__dirname, 'schema.gql'), 'utf8');
 
@@ -29,6 +30,7 @@ async function createApp(): Promise<Express> {
       ApolloServerPluginLandingPageLocalDefault(),
     ],
     formatError,
+    validationRules: [depthLimit(6)],
   });
 
   launchLogger('DB connecting...');
