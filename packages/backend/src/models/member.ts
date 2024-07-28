@@ -83,8 +83,4 @@ export class Member {
     this.name = attrs.name;
     if (attrs.roles) this.roles = attrs.roles;
   }
-
-  get teamName(): string {
-    return this.team!.name;
-  }
 }

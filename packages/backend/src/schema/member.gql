@@ -49,10 +49,10 @@ type MemberEdge {
 type Member {
   id: ID!
   name: String!
-  teamName: String!
   roles: [MemberRole!]!
   createdAt: DateTime!
   updatedAt: DateTime!
+  team: Team!
 }
 
 enum MemberRole {
